@@ -1,0 +1,2 @@
+package com.riwi.assessment_appointment.repositories;public interface SpecialtyRepository {
+}

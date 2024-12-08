@@ -1,0 +1,4 @@
+package com.riwi.assessment_appointment.models.DTOs.request;
+
+public class RegistreRequest {
+}
