@@ -90,6 +90,7 @@ src/
 │   │       ├── repositories/
 │   │       ├── models/
 │   │       └── security/
+│   │       └── utils/
 │   │
 │   └── resources/
 │       ├── application.properties
@@ -100,10 +101,6 @@ src/
 │       └── com/clinicamedica/
 │           ├── controllers/
 │           └── services/
-│
-└── docker/
-    ├── Dockerfile
-    └── docker-compose.yml
 ```
 
 ### Configuración de Entorno
@@ -151,6 +148,13 @@ src/
 - `GET api/schedules/doctor/{doctorId}/date/{date}`
 - `POST /api/schedules`
 - `DELETE /api/schedules/{id}`
+
+### Specialties
+- `GET /api/specialty`
+- `GET /api/specialty/{id}`
+- `POST api/specialty`
+- `DELETE /api/specialty/{id}`
+
 
 
 
