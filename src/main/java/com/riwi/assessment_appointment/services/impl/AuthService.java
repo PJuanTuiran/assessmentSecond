@@ -34,6 +34,7 @@ public class AuthService implements IModelAuth {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
     @Autowired
     UserMapper userMapper;
     @Override

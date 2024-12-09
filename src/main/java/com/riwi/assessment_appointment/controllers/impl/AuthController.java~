@@ -69,7 +69,7 @@ public class AuthController implements IAuthController {
     @PostMapping("/doctorRegister")
     @Override
     public ResponseEntity<?> registerDoctor(@RequestBody @Valid RegistreRequest registerRequestDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(registerRequestDTO,Roles.DOCTOR));
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(registerRequestDTO,Roles.PATIENT));
     }
 
     @Operation(

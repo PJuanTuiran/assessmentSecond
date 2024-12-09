@@ -37,7 +37,7 @@ public class UserEntity implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "specialty_id")
     private SpecialtyEntity specialty;
-
+  
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(roles.name()));
