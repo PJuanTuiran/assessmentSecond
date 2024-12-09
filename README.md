@@ -117,47 +117,42 @@ src/
 2. Configurar variables de entorno
    Crear archivo `.env`:
    ```properties
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_NAME=clinicdb
-   DB_USER=clinicuser
-   DB_PASS=clinicpassword
-   JWT_SECRET=secreto-muy-largo-y-seguro
+ 
+   spring.datasource.url=jdbc:mysql://localhost:3306/assessment
+   spring.datasource.username=root
+   spring.datasource.password;
+   
+   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+   spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+   spring.jpa.hibernate.ddl-auto=update
+   
+   spring.jpa.show-sql=true
    ```
 
 
 ## 📊 Endpoints Principales
 
 ### Autenticación
-- `POST /api/auth/registro`
+- `POST /api/auth/registerAdmin`
+- `POST /api/auth/registerDoctor`
+- `POST /api/auth/registerPatient`
 - `POST /api/auth/login`
 
 ### Citas
-- `GET /api/citas`
-- `POST /api/citas`
-- `PUT /api/citas/{id}`
-- `DELETE /api/citas/{id}`
+- `GET /api/appointment`
+- `POST /api/appointment`
+- `PUT /api/appointment/{id}`
+- `DELETE /api/appointment/{id}`
 
-### Médicos
-- `GET /api/medicos`
-- `POST /api/medicos`
 
-### Pacientes
-- `GET /api/pacientes`
-- `POST /api/pacientes`
+### Schedules
+- `GET /api/schedules`
+- `GET /api/schedules/available/date/{date}`
+- `GET api/schedules/doctor/{doctorId}/date/{date}`
+- `POST /api/schedules`
+- `DELETE /api/schedules/{id}`
 
-## 🧪 Testing
 
-### Estrategias de Test
-- Unit Tests (JUnit)
-- Integration Tests
-- Mocking con Mockito
-- Cobertura de código con JaCoCo
-
-### Ejecutar Tests
-```bash
-mvn verify
-```
 
 ## 📈 Mejoras Futuras
 - Integración con sistemas de pago
@@ -177,10 +172,9 @@ mvn verify
 - Swagger UI: `http://localhost:8080/swagger-ui.html`
 - Documentación de API: `http://localhost:8080/v3/api-docs`
 
-## 📄 Licencia
-[Especificar Licencia - Ejemplo: MIT License]
 
 ## 👥 Contacto
-[juanfer20091403@gmail.com]
+juanfer20091403@gmail.com
 
 ### 🌟 ¡Gracias por tu interés en el proyecto!
+

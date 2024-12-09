@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +35,7 @@ public class AppointmentController implements IAppointmentController {
     )
     @PostMapping("/create")
     @Override
-    public ResponseEntity<?> create(@RequestBody @Valid AppointmentRequest request) {
+    public ResponseEntity<?> create(@RequestBody AppointmentRequest request) {
         AppointmentEntity createdAppointment = appointmentModel.create(request);
         return ResponseEntity.status(201).body(createdAppointment);  // Respuesta con código 201 Created
     }
@@ -95,7 +94,7 @@ public class AppointmentController implements IAppointmentController {
     // Actualizar una cita
     @PutMapping("/update/{id}")
     @Override
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid AppointmentRequest request) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody AppointmentRequest request) {
         AppointmentEntity updatedAppointment = appointmentModel.update(id, request);
         if (updatedAppointment != null) {
             return ResponseEntity.ok(updatedAppointment);  // Respuesta con código 200 OK y cita actualizada
