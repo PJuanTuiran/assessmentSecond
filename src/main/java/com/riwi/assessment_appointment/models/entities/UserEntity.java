@@ -18,6 +18,26 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class UserEntity implements UserDetails {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String username;
+    private String email;
+    private String password;
+    private boolean active;
+    @Enumerated(EnumType.STRING)
+    private Roles roles;
+
+    @OneToMany(mappedBy = "patient")
+    private ArrayList<AppointmentEntity> appointments;
+    @OneToMany(mappedBy = "doctor")
+    private ArrayList<AppointmentEntity> assignedAppointments;
+    @ManyToOne
+    @JoinColumn(name = "specialty_id")
+    private SpecialtyEntity specialty;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(roles.name()));
@@ -42,24 +62,6 @@ public class UserEntity implements UserDetails {
     public boolean isAccountNonExpired() {
         return UserDetails.super.isAccountNonExpired();
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String username;
-    private String email;
-    private String password;
-    private boolean active;
-    @Enumerated(EnumType.STRING)
-    private Roles roles;
-
-    @OneToMany(mappedBy = "patient")
-    private ArrayList<AppointmentEntity> appointments;
-    @OneToMany(mappedBy = "doctor")
-    private ArrayList<AppointmentEntity> assignedAppointments;
-    @ManyToOne
-    @JoinColumn(name = "specialty_id")
-    private SpecialtyEntity specialty;
 
 
 }
