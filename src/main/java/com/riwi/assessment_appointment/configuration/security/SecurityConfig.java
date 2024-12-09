@@ -24,6 +24,8 @@ public class SecurityConfig {
 
     private final String[] PATIENT_SOURCES = {"auth/**"};
 
+    private final String[] DOCTOR_SOURCES = {"auth/**"};
+
     @Autowired
     AuthenticationProvider authenticationProvider;
 
@@ -38,6 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(ADMIN_SOURCES).hasAuthority("ADMIN")
                         .requestMatchers(PATIENT_SOURCES).hasAuthority("PATIENT")
+                        .requestMatchers(DOCTOR_SOURCES).hasAuthority("DOCTOR")
                         // Permitir el acceso a /login sin autenticación
                         .anyRequest().authenticated())        // Cualquier otra solicitud debe estar autenticada
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -17,6 +17,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AuthService implements IModelAuth {
 
@@ -76,4 +79,15 @@ public class AuthService implements IModelAuth {
 
     }
 
+    @Override
+    public List<UserEntity> readAll() {
+        List<UserEntity>user = userRepository.findAll();
+
+        if(user.isEmpty()){
+            throw new RuntimeException("users not found");
+        }
+
+        return user;
+
+    }
 }

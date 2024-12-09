@@ -134,6 +134,9 @@ src/
 - `POST /api/auth/registerDoctor`
 - `POST /api/auth/registerPatient`
 - `POST /api/auth/login`
+- 
+### Users
+- `GET/api/auth`
 
 ### Citas
 - `GET /api/appointment`

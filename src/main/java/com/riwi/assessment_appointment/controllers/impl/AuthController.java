@@ -3,19 +3,22 @@ package com.riwi.assessment_appointment.controllers.impl;
 import com.riwi.assessment_appointment.controllers.interfaces.IAuthController;
 import com.riwi.assessment_appointment.models.DTOs.request.LoginRequest;
 import com.riwi.assessment_appointment.models.DTOs.request.RegistreRequest;
+import com.riwi.assessment_appointment.models.entities.UserEntity;
 import com.riwi.assessment_appointment.services.interfaces.IModelAuth;
 import com.riwi.assessment_appointment.utils.enums.Roles;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -82,5 +85,27 @@ public class AuthController implements IAuthController {
     @Override
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest loginRequestDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(authService.login(loginRequestDTO));
+    }
+
+    @Operation(
+            summary = "Obtener todos los usuarios",
+            description = "Este endpoint devuelve una lista con todos los usuarios registrados en el sistema.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Lista de usuarios obtenida exitosamente.",
+                            content = @Content(
+                                    array = @ArraySchema(schema = @Schema(implementation = UserEntity.class))
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Error interno en el servidor."
+                    )
+            }
+    )
+    @GetMapping
+    public ResponseEntity<List<UserEntity>> readAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(authService.readAll());
     }
 }
