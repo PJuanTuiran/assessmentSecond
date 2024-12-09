@@ -12,7 +12,7 @@ import lombok.*;
 public class RegistreRequest {
     @NotBlank(message = "El nombre no puede estar vacio")
     private String name;
-    private String Username;
+    private String username;
     @Email(message = "El correo no es valido")
     private String email;
     @NotBlank(message = "La contraseña no puede estar vacia")
